@@ -23,7 +23,7 @@ function updateBirdPosition(dt)
     bird.y = bird.velocity + bird.y
   elseif bird.y >= screenHeight - bird.height then
     bird.y = screenHeight - bird.height
-    gameOver = true
+    gameState = "dead"
   end
 end
 
@@ -37,9 +37,9 @@ function birdCollidesWithPipes(pipe)
 
     if rectsCollide(birdRect, bottomPipeRect) or
     rectsCollide(birdRect, topPipeRect)
-    then return true end
-
+    then return "dead" end
   end
+  return "alive"
 end
 
 function rectsCollide(one, two)

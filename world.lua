@@ -17,12 +17,10 @@ function pipeSetup()
 end
 
 function pipeUpdate(dt)
-  if not gameOver then
-    for i in pairs(pipes) do pipes[i].x = pipes[i].x - pipeSpeed * dt end
-    if pipes[1].x <= -pipeWidth then
-      for i = 1, maxPipesOnScreen do pipes[i] = pipes[i+1] end
-      createPipe(pipes[maxPipesOnScreen - 1].x + (horizontalPipeGap + pipeWidth))
-    end
+  for i in pairs(pipes) do pipes[i].x = pipes[i].x - pipeSpeed * dt end
+  if pipes[1].x <= -pipeWidth then
+    for i = 1, maxPipesOnScreen do pipes[i] = pipes[i+1] end
+    createPipe(pipes[maxPipesOnScreen - 1].x + (horizontalPipeGap + pipeWidth))
   end
 end
 
