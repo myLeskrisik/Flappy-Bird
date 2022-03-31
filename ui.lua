@@ -1,8 +1,8 @@
 function setupUi()
   score = 0
-  gameOverSprite = love.graphics.newImage("gameOver.png")
+  gameOverSprite = love.graphics.newImage("sprites/gameOver.png")
   scores = {}
-  for i = 0, 9 do table.insert(scores, love.graphics.newImage(i .. ".png")) end
+  for i = 0, 9 do table.insert(scores, love.graphics.newImage("sprites/" .. i .. ".png")) end
 end
 
 function updateScore()
@@ -16,17 +16,15 @@ function updateScore()
 end
 
 function drawScore()
-  love.graphics.print(score, screenWidth / 2, 2 * screenHeight/12)
+  -- KA1 font for score
+  -- love.graphics.print(score, screenWidth / 2, 2 * screenHeight/12)
 
   score = score .. ""
-  currX = 0
-  currY = 0
+  offset = 16
   for i = 1, #score do
-    local char = score:sub(i,i)
-
+    local char = toNumber(score:sub(i,i))
+    love.graphics.draw(scores[char], screenWidth/2 + (offset * i), 2 * screenHeight/2)
   end
-
-
 end
 
 function endGame()
