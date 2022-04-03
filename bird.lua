@@ -1,5 +1,5 @@
-liftConstant = -2.4
-gravity = 5
+liftConstant = -150
+gravity = 300
 
 function drawBird(y)
   love.graphics.setColor(love.math.colorFromBytes(245,245,81))
@@ -20,7 +20,7 @@ function updateBirdPosition(dt)
     bird.y = 0
   elseif bird.y < screenHeight - bird.height  then
     bird.velocity = bird.velocity +  gravity * dt
-    bird.y = bird.velocity + bird.y
+    bird.y = bird.y + bird.velocity * dt
   elseif bird.y >= screenHeight - bird.height then
     bird.y = screenHeight - bird.height
     gameState = "dead"

@@ -17,14 +17,7 @@ end
 
 function drawScore()
   -- KA1 font for score
-  -- love.graphics.print(score, screenWidth / 2, 2 * screenHeight/12)
-
-  score = score .. ""
-  offset = 16
-  for i = 1, #score do
-    local char = toNumber(score:sub(i,i))
-    love.graphics.draw(scores[char], screenWidth/2 + (offset * i), 2 * screenHeight/2)
-  end
+  love.graphics.print(score, screenWidth / 2, 2 * screenHeight/12)
 end
 
 function endGame()
