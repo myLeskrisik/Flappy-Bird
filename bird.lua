@@ -20,7 +20,7 @@ function updateBirdPosition(dt)
     bird.y = 0
   elseif bird.y < screenHeight - bird.height  then
     bird.velocity = bird.velocity +  gravity * dt
-    bird.y = bird.velocity + bird.y
+    bird.y = bird.y + bird.velocity 
   elseif bird.y >= screenHeight - bird.height then
     bird.y = screenHeight - bird.height
     gameState = "dead"
