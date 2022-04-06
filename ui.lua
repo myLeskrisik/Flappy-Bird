@@ -1,13 +1,12 @@
 function setupUi()
   score = 0
   gameOverSprite = love.graphics.newImage("sprites/gameOver.png")
-  scores = {}
-  for i = 0, 9 do table.insert(scores, love.graphics.newImage("sprites/" .. i .. ".png")) end
+  gameOverSprite:setFilter("nearest", "nearest")
 end
 
 function updateScore()
   for i in pairs(pipes) do
-    pipe = pipes[i]
+    local pipe = pipes[i]
     if pipe.x < screenWidth / 2 and not pipe.scored then
       score = score + 1
       pipe.scored = true
@@ -16,10 +15,16 @@ function updateScore()
 end
 
 function drawScore()
-  -- KA1 font for score
   love.graphics.print(score, screenWidth / 2, 2 * screenHeight/12)
 end
 
 function endGame()
-  love.graphics.draw(gameOverSprite, screenWidth/4 , 1 * screenHeight/16)
+  local gameOverXScale = 4
+  local gameOverYScale = 4
+  -- Puts the center of the gameOver sprite in the center of the screen
+  local gameOverX = screenWidth/2 - (gameOverSprite:getWidth() * gameOverXScale / 2)
+  local gameOverY = screenHeight/6 - (gameOverSprite:getHeight() * gameOverYScale / 2)
+
+  love.graphics.draw(gameOverSprite, gameOverX,
+  1 * screenHeight/16, 0, gameOverXScale, gameOverYScale)
 end
